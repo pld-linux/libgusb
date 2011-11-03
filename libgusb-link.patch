@@ -1,0 +1,11 @@
+--- libgusb-0.1.1/gusb/Makefile.am.orig	2011-10-10 16:24:46.000000000 +0200
++++ libgusb-0.1.1/gusb/Makefile.am	2011-11-03 17:23:07.785966750 +0100
+@@ -38,7 +38,7 @@
+ 
+ libgusb_la_LIBADD =						\
+ 	$(GLIB_LIBS)						\
+-	$(GUDEV_LIBS)
++	$(GUDEV_LIBS) $(USB_LIBS)
+ 
+ libgusb_la_LDFLAGS =						\
+ 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)	\
