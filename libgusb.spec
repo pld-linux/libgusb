@@ -6,26 +6,25 @@
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
-Version:	0.1.6
+Version:	0.2.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	672058e7a49a38259ab6ea01470c2fa2
+# Source0-md5:	ce38ec3885713af0c06d110997fb3789
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 1.29
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	libusb-devel >= 1.0.0
+BuildRequires:	libusb-devel >= 1.0.19
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	udev-glib-devel
 %{?with_vala:BuildRequires:	vala >= 2:0.16}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.28.0
-Requires:	libusb >= 1.0.0
+Requires:	glib2 >= 1:2.32.0
+Requires:	libusb >= 1.0.19
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,9 +46,8 @@ Summary:	Header files for GUsb library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GUsb
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.28.0
-Requires:	libusb-devel >= 1.0.0
-Requires:	udev-glib-devel
+Requires:	glib2-devel >= 1:2.32.0
+Requires:	libusb-devel >= 1.0.19
 
 %description devel
 Header files for GUsb library.
