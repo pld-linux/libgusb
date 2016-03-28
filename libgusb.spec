@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	vala		# Vala API
-#
+
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
 Version:	0.2.8
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
@@ -36,8 +36,8 @@ system daemon.
 
 %description -l pl.UTF-8
 GUsb to obudowanie GObject biblioteki libusb1, ułatwiające
-asynchroniczne sterowanie oraz przesyłanie danych (typu bulk jak i
-z użyciem przerwań) z właściwym przerywaniem i integracją w głównej
+asynchroniczne sterowanie oraz przesyłanie danych (typu bulk jak i z
+użyciem przerwań) z właściwym przerywaniem i integracją w głównej
 pętli. Ułatwia to integrowanie niskopoziomowego przesyłania danych po
 USB w wysokopoziomowej aplikacji lub demonie systemowym.
 
@@ -84,6 +84,9 @@ Summary(pl.UTF-8):	API języka Vala do libgusb
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-libgusb
 Vala API for libgusb.
