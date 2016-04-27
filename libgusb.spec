@@ -7,16 +7,16 @@ Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
 Version:	0.2.9
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
 # Source0-md5:	d4251e958aee7d19e39f8021e457942f
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gobject-introspection-devel >= 1.29
+BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libusb-devel >= 1.0.19
 BuildRequires:	pkgconfig
@@ -71,6 +71,9 @@ Statyczna biblioteka GUsb.
 Summary:	GUsb API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GUsb
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API and internal documentation for GUsb library.
