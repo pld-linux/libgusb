@@ -6,12 +6,12 @@
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
-Version:	0.2.9
-Release:	2
+Version:	0.2.10
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	d4251e958aee7d19e39f8021e457942f
+# Source0-md5:	5f2658e02fee6d7b484a40c4afc48c5c
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 1:2.38.0
