@@ -14,7 +14,7 @@ Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.t
 # Source0-md5:	fa2b41b828c749f9190edf888948a77b
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	glib2-devel >= 1:2.38.0
+BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 1.29
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	libtool >= 2:2.2
@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.16}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.38.0
+Requires:	glib2 >= 1:2.44.0
 Requires:	libusb >= 1.0.19
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +46,7 @@ Summary:	Header files for GUsb library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GUsb
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.38.0
+Requires:	glib2-devel >= 1:2.44.0
 Requires:	libusb-devel >= 1.0.19
 
 %description devel
