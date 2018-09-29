@@ -1,25 +1,28 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
+%bcond_without	apidocs		# API documentation
+%bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala API
 
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
-Version:	0.2.11
+Version:	0.3.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	fa2b41b828c749f9190edf888948a77b
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake >= 1:1.11
+# Source0-md5:	3c178f1171f808785d6af971b1fdc50c
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 1.29
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libusb-devel >= 1.0.19
+BuildRequires:	meson >= 0.37.0
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.16}
 BuildRequires:	xz
@@ -100,26 +103,19 @@ API języka Vala do libgusb.
 %prep
 %setup -q
 
+%if %{with static_libs}
+%{__sed} -i -e 's/shared_library/library/' gusb/meson.build
+%endif
+
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-silent-rules \
-	%{!?with_vala:--disable-vala} \
-	--with-html-dir=%{_gtkdocdir}
-%{__make}
+%meson build
+
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-# obsoleted by pkg-config
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgusb.la
+%meson_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -129,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README TODO
+%doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_bindir}/gusbcmd
 %attr(755,root,root) %{_libdir}/libgusb.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgusb.so.2
@@ -142,9 +138,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/GUsb-1.0.gir
 %{_pkgconfigdir}/gusb.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgusb.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
@@ -155,5 +153,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with vala}
 %files -n vala-libgusb
 %defattr(644,root,root,755)
+%{_datadir}/vala/vapi/gusb.deps
 %{_datadir}/vala/vapi/gusb.vapi
 %endif
