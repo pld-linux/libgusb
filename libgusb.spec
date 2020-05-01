@@ -108,7 +108,8 @@ API języka Vala do libgusb.
 %endif
 
 %build
-%meson build
+%meson build \
+	-Dvapi=%{__true_false vala}
 
 %ninja_build -C build
 
