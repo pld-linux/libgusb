@@ -74,9 +74,7 @@ Statyczna biblioteka GUsb.
 Summary:	GUsb API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GUsb
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for GUsb library.
@@ -90,9 +88,7 @@ Summary(pl.UTF-8):	API języka Vala do libgusb
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description -n vala-libgusb
 Vala API for libgusb.
