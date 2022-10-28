@@ -7,18 +7,19 @@
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
-Version:	0.3.10
+Version:	0.4.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	5effbae7609134a51f3ec295733302c3
+# Source0-md5:	32367173c06f1837e9cb943e778764cd
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 1.29
-BuildRequires:	gtk-doc >= 1.9
+%{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
+BuildRequires:	json-glib-devel >= 1.1.1
 BuildRequires:	libusb-devel >= 1.0.22
-BuildRequires:	meson >= 0.46.0
+BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -106,6 +107,7 @@ API języka Vala do libgusb.
 
 %build
 %meson build \
+	-Ddocs=%{__true_false apidocs} \
 	-Dvapi=%{__true_false vala}
 
 %ninja_build -C build
@@ -114,6 +116,11 @@ API języka Vala do libgusb.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
+
+%if %{with apidocs}
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/libgusb $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -145,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gusb
+%{_gtkdocdir}/libgusb
 %endif
 
 %if %{with vala}
