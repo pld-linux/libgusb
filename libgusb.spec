@@ -7,19 +7,21 @@
 Summary:	GUsb - GObject wrapper for libusb1 library
 Summary(pl.UTF-8):	GUsb - obudowanie GObject biblioteki libusb1
 Name:		libgusb
-Version:	0.4.2
+Version:	0.4.6
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	https://people.freedesktop.org/~hughsient/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	32367173c06f1837e9cb943e778764cd
+#Source0Download: https://github.com/hughsie/libgusb/releases
+Source0:	https://github.com/hughsie/libgusb/releases/download/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	309ebe36641fe53b883cdac8ad38cb94
+URL:		https://github.com/hughsie/libgusb
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 1.29
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	json-glib-devel >= 1.1.1
 BuildRequires:	libusb-devel >= 1.0.22
-BuildRequires:	meson >= 0.49.0
+BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
