@@ -103,12 +103,9 @@ API języka Vala do libgusb.
 %prep
 %setup -q
 
-%if %{with static_libs}
-%{__sed} -i -e 's/shared_library/library/' gusb/meson.build
-%endif
-
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Ddocs=%{__true_false apidocs} \
 	-Dvapi=%{__true_false vala}
 
